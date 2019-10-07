@@ -14,7 +14,8 @@ const Header = () =>{
           <Collapse isOpen={open} navbar>
             <Nav className='ml-auto' navbar>
               <NavItem>
-                <NavLink tag={Link} to='/generos'>Gêneros</NavLink>
+                <NavLink className='item-menu' tag={Link} to='/generos'>Gêneros</NavLink>
+                <NavLink className='item-menu btn btn-info' tag={Link} to='/generos/novo'>Novo Gênero</NavLink>
               </NavItem>
             </Nav> 
           </Collapse>

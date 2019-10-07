@@ -2,3 +2,8 @@
 *{
     font-family: 'Oswald', sans-serif;
 }
+
+.item-menu{
+    display: inline-block;
+    float:left;
+}
