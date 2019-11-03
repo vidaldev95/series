@@ -12,12 +12,13 @@ const NewGenre = () =>{
     const save = () =>{
         axios
             .post('/api/genres',{
-                name: name
+                name
             })
             .then(res => {
                 setSuccess(true)
             })
     }
+    
     if(success){
         return <Redirect to='/generos' />
     }
@@ -31,6 +32,7 @@ const NewGenre = () =>{
                     <input type='text' value={name} onChange={onChange} className='form-control' id='name' placeholder='Nome' />
                 </div>
                 <button type='button' onClick={save} className='btn btn-primary'>Salvar</button>
+       
             </form>
         </div>
     )

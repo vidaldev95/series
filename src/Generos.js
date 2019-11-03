@@ -25,7 +25,7 @@ const Generos = () => {
     const renderRow = record => {
         return(
             <tr key={record.id}>
-                <th scope='row'>{record.id}</th>
+                <th scope='row'></th>
                 <td>{record.name}</td>
                 <td>
                     <button className='btn btn-danger' onClick={()=>deleteGenre(record.id)}>Remover</button>
@@ -55,7 +55,7 @@ const Generos = () => {
             <table className='table table-dark'>
                 <thead>
                     <tr>
-                        <th scope='col'>ID</th>
+                        <th scope='col'></th>
                         <th scope='col'>Nome</th>
                         <th scope='col'>Ações</th>
                     </tr>

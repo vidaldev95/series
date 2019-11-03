@@ -22,7 +22,7 @@ const EditSerie = ({match}) =>{
     const save = () =>{
         axios
             .put('/api/series/' + match.params.id,{
-                name: name
+                name
             })
             .then(res => {
                 setSuccess(true)

@@ -4,10 +4,11 @@ import { Redirect } from 'react-router-dom'
 import { Badge } from 'reactstrap'
 
 const InfoSerie = ({ match }) =>{
-
-    const [form, setForm] = useState({})
+    const [form, setForm] = useState({
+        name: ''
+    })
     const [success, setSuccess] = useState(false)
-    const [mode, setMode] = useState('EDIT')
+    const [mode, setMode] = useState('INFO')
     const [genres, setGenres] = useState([])
     const [genreId, setGenreId] = useState('')
 
@@ -85,11 +86,11 @@ const InfoSerie = ({ match }) =>{
                             <div className='0'>
                                 <h1 className='font-weight-light text-white'>{data.name}</h1>
                                 <div className='lead text-white'>
-
+                                    
                                     { data.status === 'ASSISTIDO' && <Badge color='success'>Assistido</Badge> }
-                                    { data.status === 'PARA_ASSISTIR' && <Badge color='warning'>Para Assistir</Badge> }
+                                    { data.status === 'PARA_ASSISTIR' && <Badge color='danger'>Para Assistir</Badge> }
 
-                                    Gênero: {data.genre_id}
+                                    Gênero: {data.genre}
                                 </div>
                             </div>
                         </div>
@@ -97,14 +98,17 @@ const InfoSerie = ({ match }) =>{
                 </div>
             </header>
             <div className='container'>
+                <h2>Comentários</h2>
+                <p>{data.comments}</p>
+            </div>
+            <div className='container'>
                 <button className='btn btn-primary' onClick={() => setMode('EDIT')}>Editar</button>
             </div>
             {
                 mode === 'EDIT' &&                
                 <div className='container'>
-                    <h1>Nova Série</h1>
-                    <pre>{JSON.stringify(form)}</pre>
-                    <button className='btn btn-warning' onClick={() => setMode('INFO')}>Cancelar Edição</button>
+                    <h1>Editar Série</h1>
+                         <button className='btn btn-warning' onClick={() => setMode('INFO')}>Cancelar Edição</button>
                     <form>
                         <div className='form-group'>
                             <label htmlFor='name'>Nome</label>
@@ -112,26 +116,26 @@ const InfoSerie = ({ match }) =>{
                         </div>
 
                         <div className='form-group'>
-                            <label htmlFor='name'>Comentários</label>
-                            <input type='text' value={form.comments} onChange={onChange('comments')} className='form-control' id='name' placeholder='Nome' />
+                            <label htmlFor='name'>Comente</label>
+                            <input type='text' value={form.comments} onChange={onChange('comments')} className='form-control' id='name' placeholder='Comentário' />
                         </div>
 
                         <div className='form-group'>
                             <label htmlFor='name'>Gênero</label>
-                            <select class="form-control" onChange={onChangeGenre} value={genreId}>
-                                { genres.map(genre => <option key={genre.id}>{genre.name}</option> )}
+                            <select className="form-control" onChange={onChangeGenre} value={genreId}>
+                                { genres.map(genre => <option key={genre.id} value={genre.id}>{genre.name}</option> )}
                             </select>
                         </div>
 
                         <div className='form-check'>
-                            <input className='form-check-input' type='radio' name='status' id='assistido' value='ASSISTIDO' onClick={seleciona('ASSISTIDO')}/>
+                            <input className='form-check-input' type='radio' checked={form.status === 'ASSISTIDO'} name='status' id='assistido' value='ASSISTIDO' onChange={seleciona('ASSISTIDO')}/>
                             <label className='form-check-label' htmlFor='assistido'>
                                 Assistido
                             </label>
                         </div>
 
                         <div className='form-check'>
-                            <input className='form-check-input' type='radio' name='status' id='paraAssistir' value='PARA_ASSISTIR' onClick={seleciona('PARA_ASSISTIR')}/>
+                            <input className='form-check-input' type='radio' checked={form.status === 'PARA_ASSISTIR'} name='status' id='paraAssistir' value='PARA_ASSISTIR' onChange={seleciona('PARA_ASSISTIR')}/>
                             <label className='form-check-label' htmlFor='paraAssistir'>
                                 Para Assistir
                             </label>

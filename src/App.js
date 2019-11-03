@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Header from './Header'
 import Generos from './Generos'
 import Series from './Series'
@@ -18,9 +18,10 @@ function App() {
       <div>
         <Header />
         <Switch>
-          <Route path='/generos/:id' exact component={EditGenre} />
-          <Route path='/generos/novo' exact component={NewGenre} />
           <Route path='/generos' exact component={Generos} />
+          <Route path='/generos/novo' exact component={NewGenre} />
+          <Route path='/generos/:id' exact component={EditGenre} />        
+          
           <Route path='/series' exact component={Series} />
           <Route path='/series/novo' exact component={NewSerie} />
           <Route path='/series/:id' exact component={InfoSeries} />

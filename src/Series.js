@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { Badge } from 'reactstrap'
 
 const Series = () => {
     const [data, setData] = useState([])
@@ -25,9 +26,16 @@ const Series = () => {
     const renderRow = record => {
         return(
             <tr key={record.id}>
-                <th scope='row'>{record.id}</th>
+                <th scope='row'></th>
                 <td>{record.name}</td>
-                <td>{record.genre}</td>
+                <td>{record.genre}</td>             
+                <td>
+                 
+                    { record.status === 'ASSISTIDO' && <Badge color='success'>Assistido</Badge> }
+                    { record.status === 'PARA_ASSISTIR' && <Badge color='danger'>Para Assistir</Badge> }
+                </td>     
+                                  
+                
                 <td>
                     <button className='btn btn-danger' onClick={()=>deleteSerie(record.id)}>Remover</button>
                     <Link className='btn btn-info' to={'/series/' + record.id}>Info</Link>
@@ -56,9 +64,10 @@ const Series = () => {
             <table className='table table-dark'>
                 <thead>
                     <tr>
-                        <th scope='col'>ID</th>
+                        <th scope='col'></th>
                         <th scope='col'>Nome</th>
                         <th scope='col'>Gênero</th>
+                        <th scope='col'>Status</th>
                         <th scope='col'>Ações</th>
                     </tr>
                 </thead>
